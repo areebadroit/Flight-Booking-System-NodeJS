@@ -1,9 +1,7 @@
 const express = require("express");
-const { InfoController } = require("../../controllers");
+
+const airplaneRoutes = require("./airplane-router");
 
 const router = express.Router();
-// router.get("/info", (req, res) => {
-//   return res.json({ message: "OK" });
-// });
-router.get("/info", InfoController.info);
+router.use("/airplanes", airplaneRoutes);
 module.exports = router;
