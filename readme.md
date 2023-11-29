@@ -1,6 +1,4 @@
-# Node.js MVC Starter Template
-
-A starter template for Node.js projects with an MVC (Model-View-Controller) architecture. This template provides a well-organized folder structure and integrates commonly used packages for building robust and scalable Node.js applications.
+# Flight Booking System
 
 ## Features
 
