@@ -19,7 +19,69 @@ async function createAirplane(req, res) {
     return res.status(error.statusCode).json(ErrorResponse);
   }
 }
-
+async function getAirplanes(req, res) {
+  try {
+    const allAirplane = await AirplaneService.getAirplanes();
+    SuccessResponse.message = "Listing all airplanes";
+    SuccessResponse.data = allAirplane;
+    SuccessResponse.success = true;
+    return res.status(StatusCodes.OK).json(SuccessResponse);
+  } catch (error) {
+    ErrorResponse.message =
+      "Something went wrong while retrieving all airplanes";
+    ErrorResponse.error = error;
+    return res.status(error.statusCode).json(ErrorResponse);
+  }
+}
+async function getAirplane(req, res) {
+  try {
+    const airplane = await AirplaneService.getAirplane(req.params.id);
+    SuccessResponse.message = "Listing all airplanes";
+    SuccessResponse.data = airplane;
+    SuccessResponse.success = true;
+    return res.status(StatusCodes.OK).json(SuccessResponse);
+  } catch (error) {
+    ErrorResponse.message =
+      "Something went wrong while retrieving airplane with the given id";
+    ErrorResponse.error = error;
+    return res.status(error.statusCode).json(ErrorResponse);
+  }
+}
+async function destroyAirplane(req, res) {
+  try {
+    const response = await AirplaneService.destroyAirplane(req.params.id);
+    SuccessResponse.message = `Airplane with id ${req.params.id} deleted.`;
+    SuccessResponse.data = response;
+    SuccessResponse.success = true;
+    return res.status(StatusCodes.ACCEPTED).json(SuccessResponse);
+  } catch (error) {
+    ErrorResponse.message =
+      "Something went wrong while deleting airplane with the given id";
+    ErrorResponse.error = error;
+    return res.status(error.statusCode).json(ErrorResponse);
+  }
+}
+async function updateAirplane(req, res) {
+  try {
+    const response = await AirplaneService.updateAirplane(
+      req.params.id,
+      req.body
+    );
+    SuccessResponse.message = `Airplane with id ${req.params.id} updated.`;
+    SuccessResponse.data = response;
+    SuccessResponse.success = true;
+    return res.status(StatusCodes.ACCEPTED).json(SuccessResponse);
+  } catch (error) {
+    ErrorResponse.message =
+      "Something went wrong while updating airplane with the given id";
+    ErrorResponse.error = error;
+    return res.status(error.statusCode).json(ErrorResponse);
+  }
+}
 module.exports = {
   createAirplane,
+  getAirplanes,
+  getAirplane,
+  destroyAirplane,
+  updateAirplane,
 };
