@@ -9,7 +9,25 @@ app.use(express.json()); //Helps to parse the incoming request body as json
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", apiRoutes);
-app.listen(ServerConfig.PORT, () => {
+app.listen(ServerConfig.PORT, async () => {
   console.log(`Server started at PORT: ${ServerConfig.PORT}`);
   Logger.info("Server up and running.");
+  // const { City, Airport } = require("../src/models");
+  // const city = City.create({
+  //   name: "Noida",
+  // });
+  //const city = await City.findByPk(16);
+  // console.log(city);
+  // city.createAirport({
+  //   name: "Kempegowda International Airport",
+  //   code:"BLR"
+  // })
+  // const airport = await Airport.findByPk(5);
+  // city.removeAirport(airport);
+  // const city = await City.destroy({
+  //   where: {
+  //     id: 16,
+  //   },
+  // });
+  // console.log(city)
 });

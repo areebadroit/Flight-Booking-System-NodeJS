@@ -9,14 +9,17 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.hasMany(models.Airport, {
+        foreignKey: "cityId",
+      });
     }
   }
   City.init(
     {
       name: {
         type: DataTypes.STRING,
-        allowNull: false,
         unique: true,
+        allowNull: false,
       },
     },
     {
