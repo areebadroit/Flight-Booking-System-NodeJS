@@ -59,8 +59,28 @@ function validateCreateRequest(req, res, next) {
     );
     return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
   }
+  if (req.body.departureAirportId == req.body.arrivalAirportId) {
+    ErrorResponse.message = "Something went wrong while creating an airport";
+    ErrorResponse.error = new AppError(
+      [`Departure and Arrival airport cannot be same.`],
+      StatusCodes.BAD_REQUEST
+    );
+    return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
+  }
+  next();
+}
+function validateGetAllFlightsRequest(req, res, next) {
+  if (req.body.departureAirportId == req.body.arrivalAirportId) {
+    ErrorResponse.message = "Something went wrong while creating an airport";
+    ErrorResponse.error = new AppError(
+      [`Departure and Arrival airport cannot be same.`],
+      StatusCodes.BAD_REQUEST
+    );
+    return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
+  }
   next();
 }
 module.exports = {
-  validateCreateRequest,
+    validateCreateRequest,
+    validateGetAllFlightsRequest
 };
