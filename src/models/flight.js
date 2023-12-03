@@ -16,10 +16,14 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.Airport, {
         foreignKey: "arrivalAirportId",
         onDelete: "CASCADE",
+        as: "arrivalAirportId_code",
+        targetKey: "code",
       });
       this.belongsTo(models.Airport, {
         foreignKey: "departureAirportId",
         onDelete: "CASCADE",
+        as: "departureAirportId_code",
+        targetKey: "code",
       });
     }
   }
@@ -44,7 +48,6 @@ module.exports = (sequelize, DataTypes) => {
       arrivalTime: {
         type: DataTypes.DATE,
         allowNull: false,
-        
       },
       departureTime: {
         type: DataTypes.DATE,

@@ -66,6 +66,7 @@ async function getAllFlights(query) {
     );
     return flight;
   } catch (error) {
+    console.log(error);
     throw new AppError(
       "Error occured in retrieving flights.",
       StatusCodes.INTERNAL_SERVER_ERROR
