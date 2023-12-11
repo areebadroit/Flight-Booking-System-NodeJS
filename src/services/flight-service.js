@@ -73,7 +73,19 @@ async function getAllFlights(query) {
     );
   }
 }
+async function getFlight(id) {
+  try {
+    const flight = await flightRepository.get(id);
+    return flight;
+  } catch (error) {
+    throw new AppError(
+      "Error occured in retrieving the flight",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
+  }
+}
 module.exports = {
   createFlight,
   getAllFlights,
+  getFlight,
 };

@@ -1,5 +1,5 @@
 const success = {
-  success: false,
+  success: true,
   message: `Successfully completed the request`,
   data: {},
   error: {},
