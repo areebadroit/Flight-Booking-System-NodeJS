@@ -14,4 +14,9 @@ router.get(
   FlightController.getAllFlights
 );
 router.get("/:id", FlightController.getFlight);
+router.patch(
+  "/:id",
+  FlightMiddlewares.validateUpdateRemainingSeats,
+  FlightController.updateRemainingSeats
+);
 module.exports = router;

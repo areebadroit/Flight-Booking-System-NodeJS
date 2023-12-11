@@ -84,8 +84,27 @@ async function getFlight(id) {
     );
   }
 }
+async function updateRemainingSeats(flightId, seats, dec) {
+  try {
+    const response = await flightRepository.updateRemainingSeats(
+      flightId,
+      seats,
+      dec
+    );
+    return response;
+  } catch (error) {
+    console.log(error);
+    throw new AppError(
+      "Error occured in " +
+        (dec ? "incrementing" : "decrementing") +
+        " the remaining seats(s) count in the flight.",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
+  }
+}
 module.exports = {
   createFlight,
   getAllFlights,
   getFlight,
+  updateRemainingSeats,
 };

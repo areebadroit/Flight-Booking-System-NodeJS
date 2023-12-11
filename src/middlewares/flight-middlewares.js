@@ -80,7 +80,20 @@ function validateGetAllFlightsRequest(req, res, next) {
   }
   next();
 }
+function validateUpdateRemainingSeats(req, res, next) {
+  if (!req.body.seats) {
+    ErrorResponse.message =
+      "Something went wrong while updating the seats in the flight.";
+    ErrorResponse.error = new AppError(
+      [`Seats not found in the request body.`],
+      StatusCodes.BAD_REQUEST
+    );
+    return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
+  }
+  next();
+}
 module.exports = {
-    validateCreateRequest,
-    validateGetAllFlightsRequest
+  validateCreateRequest,
+  validateGetAllFlightsRequest,
+  validateUpdateRemainingSeats,
 };
