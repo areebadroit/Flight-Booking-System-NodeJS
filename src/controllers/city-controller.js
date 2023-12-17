@@ -22,6 +22,7 @@ async function getCities(req, res) {
     SuccessResponse.success = true;
     return res.status(StatusCodes.OK).json(SuccessResponse);
   } catch (error) {
+    console.log(error)
     ErrorResponse.message = "Something went wrong while retrieving all cities";
     ErrorResponse.error = error;
     return res.status(error.statusCode).json(ErrorResponse);
